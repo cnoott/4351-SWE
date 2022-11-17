@@ -46,7 +46,7 @@ const Login = () => {
                     </Form.Group>
                 </Form> 
                 <Button variant='primary'> Signin </Button>
-                <Button variant='Secondary' href='/guest-reserve'> Continue as guest </Button>
+                <Button variant='Secondary' href='/guestReserve'> Continue as guest </Button>
             </Container>
         </Layout>
     );
