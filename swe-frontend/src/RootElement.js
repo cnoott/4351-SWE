@@ -9,8 +9,7 @@ const RootElement = () => {
     return (
     <BrowserRouter>
         <Routes>
-            <Route path='/' exact element={<App/>}/>
-            <Route path='/login' exact element={<Login/>}/>
+            <Route path='/' exact element={<Login/>}/>
             <Route path='/signup' exact element={<Signup/>}/>
         </Routes>
     </BrowserRouter>
