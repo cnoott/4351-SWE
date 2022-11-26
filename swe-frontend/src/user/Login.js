@@ -72,6 +72,7 @@ const Login = () => {
                         {password}
                     </Form.Group>
                 </Form> 
+
                 <Button 
                     variant='primary'
                     onClick={handleSubmit}
@@ -82,6 +83,7 @@ const Login = () => {
                 <Button href='/signup' variant='secondary' className='mx-2'>
                     Or Create an Account
                 </Button>
+
             </Container>
         </Layout>
     );
