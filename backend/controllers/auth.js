@@ -10,29 +10,31 @@ exports.signup = (req, res) => {
 
     const user = new User(req.body);
 
-    user.save((err, user) => {
-        if (err || !user) {
+    user.save((err, newUser) => {
+        if (err || !newUser) {
             return res.status(400).json({
                 error: '' + err
             });
         }
+        console.log('output:');
+        console.log(newUser);
 
-        user.salt = undefined;
-        user.hashed_password = undefined;
+        newUser.salt = undefined;
+        newUser.hashed_password = undefined;
 
-        const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET);
+        const token = jwt.sign({ _id: newUser._id}, process.env.JWT_SECRET);
 
         res.cookie('t', token, { expiry: new Date() + 999 });
 
-        const { _id, username } = user;
-        return res.json({ token, user: { _id, username } });
+        const { _id, name, email, role } = newUser;
+        return res.json({ token, user: { _id, name, email, role } });
     });
 };
 
 exports.signin = (req, res) => {
     //find user based on email
-    const { username, password } = req.body;
-    User.findOne({ username }, (err, user) => {
+    const { email, password } = req.body;
+    User.findOne({ email }, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: 'User with that email does not exist'
@@ -48,12 +50,13 @@ exports.signin = (req, res) => {
 
         //generate signin token with user id and secret
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
         //persist token as 't' in cookie with expiry date
         res.cookie('t', token, { expiry: new Date() + 150 });
 
-        //return response with user and token to frontend client
-        const { _id, username } = user;
-        return res.json({ token, user: { _id, username } });
+
+        const { _id, name, email, role } = user;
+        return res.json({ token, user: { _id, name, email, role } });
     });
 };
 
