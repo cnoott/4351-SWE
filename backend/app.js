@@ -26,10 +26,12 @@ app.use(cors({
 //import routes here
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const tableRoutes = require('./routes/table');
 
 //routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', tableRoutes);
 
 const PORT = process.env.PORT || 8000;
 

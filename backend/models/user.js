@@ -8,10 +8,28 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    role: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
+    email: {
+        type: String,
+        required: true
+    },
 
     address: {
         type: String,
         required: true,
+    },
+    hashed_password: {
+        type: String
+    },
+
+    billingAddress: {
+        type: String,
+        required: true
     },
 
     preferredDinerNum: {
@@ -27,7 +45,13 @@ const userSchema = new mongoose.Schema({
     preferredPayment: {
         type: String,
         enum: ['cash', 'credit', 'check']
-    }
+    },
+
+    creditCardNumber: {
+        type: String,
+        required: false
+    },
+    salt: String, 
 });
 
 //virtual field
