@@ -18,6 +18,11 @@ const tableSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+
+    combinedWith: {
+        type: ObjectId,
+        ref: 'Table'
+    },
 });
 
 module.exports = mongoose.model('Table', tableSchema);

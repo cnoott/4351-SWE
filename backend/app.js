@@ -27,11 +27,13 @@ app.use(cors({
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const tableRoutes = require('./routes/table');
+const reservationRoutes = require('./routes/reservation');
 
 //routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', tableRoutes);
+app.use('/api', reservationRoutes);
 
 const PORT = process.env.PORT || 8000;
 
