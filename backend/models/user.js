@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    earnedPoitns: {
+    earnedPoints: {
         type: Number,
         default: 0
     },
@@ -51,6 +51,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+
+    reservations: [{
+        type: ObjectId,
+        ref: 'Reservation'
+    }],
+
+
     salt: String, 
 });
 
