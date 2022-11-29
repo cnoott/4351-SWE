@@ -6,7 +6,7 @@ import Home from './Home';
 import CreateTable from './admin/CreateTable';
 import GuestReserve from './user/GuestReserve';
 import TableRes from './user/TableRes';
-
+import ReservationHistory from './user/ReservationHistory';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -22,6 +22,7 @@ const RootElement = () => {
             <Route path='/create-table' exact element={<CreateTable/>}/>
 
             <Route path='/guestReserve' exact element={<GuestReserve/>}/>
+            <Route path='/reservationHistory' exact element={<ReservationHistory/>}/>
 
             <Route path='/reserve' exact element={<TableRes/>}/>
 
