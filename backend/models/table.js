@@ -20,8 +20,7 @@ const tableSchema = new mongoose.Schema({
     },
 
     combinedWith: {
-        type: ObjectId,
-        ref: 'Table'
+        type: Object,
     },
 });
 
