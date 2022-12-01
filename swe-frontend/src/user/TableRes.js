@@ -117,9 +117,11 @@ const TableRes = () => {
                 <Form className=''>
                     { error && <Alert variant='danger'> {error} </Alert> }
                     { warning && <Alert variant='warning'> {warning} </Alert> }
-                    <Form.Group className = "mb-3" controlId = "regNumGuests">
+                    {/*GUESTS*/}
+                    <Form.Group id = "numg" className = {"text-center w-50"} controlId = "regNumGuests">
                         <Form.Label>Number of Guests</Form.Label>
                         <Form.Control 
+                            className = {"text-center w-50"}
                             type="name" 
                             placeholder="Enter Number of Guests" 
                             value={numGuests}
@@ -127,10 +129,11 @@ const TableRes = () => {
                         />
                         {numGuests}
                     </Form.Group>
-
-                    <Form.Group className = "mb-3" controlId = "regDate">
+                    {/*DATES*/}
+                    <Form.Group className = {"text-center w-50"} controlId = "regDate">
                         <Form.Label>Date</Form.Label>
                         <Form.Control 
+                            className = {"text-center w-50"}
                             type="date" 
                             placeholder="Enter Reservation Date (MM/DD/YYYY)" 
                             value={date}
@@ -138,19 +141,47 @@ const TableRes = () => {
                         />
                         {date}
                     </Form.Group>
+                    {/*TIMES*/}
+                    <Form.Group className = {"text-center w-50"} controlId = "TimeOptions">
+                        <Form.Label>Reservation Time</Form.Label>
+                        <Dropdown onSelect={handleChange('time')}>
+                            <Dropdown.Toggle variant='secondary'>
+                                Select Reservation Time
+                            </Dropdown.Toggle>
 
-                    <Form.Group className = "mb-3" controlId = "regTime">
-                        <Form.Label>Time</Form.Label>
-                        <Form.Control 
-                            type="time" 
-                            placeholder="Enter Reservation Time (HH:MM)" 
-                            value={time}
-                            onChange={handleChange('time')}
-                        />
-                        {time}
+                            <Dropdown.Menu>
+                                <Dropdown.Item eventKey={'10:00AM'}>10:00AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'10:30AM'}>10:30AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'11:00AM'}>11:00AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'11:30AM'}>11:30AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'12:00PM'}>12:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'12:30PM'}>12:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'1:00PM'}>1:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'1:30PM'}>1:30PM</Dropdown.Item>                                <Dropdown.Item eventKey={'1:00PM'}>1:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'2:00PM'}>2:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'2:30PM'}>2:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'3:00PM'}>3:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'3:30PM'}>3:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'4:00PM'}>4:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'4:30PM'}>4:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'5:00PM'}>5:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'5:30PM'}>5:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'6:00PM'}>6:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'6:30PM'}>6:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'7:00PM'}>7:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'7:30PM'}>7:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'8:00PM'}>8:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'8:30PM'}>8:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'9:00PM'}>9:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'9:30PM'}>9:30PM</Dropdown.Item>
+
+
+                            </Dropdown.Menu>
+                            <p> Selected Time: <strong>{time}</strong> </p>
+                        </Dropdown>
                     </Form.Group>
 
-                    <Button variant='primary' onClick={handleSubmit}> Reserve</Button>
+                    <Button variant='primary' className = {"text-center w-25"} onClick={handleSubmit}> Reserve</Button>
                 </Form>
                 :
                 <Container>
@@ -170,3 +201,4 @@ const TableRes = () => {
 };
 
 export default TableRes;
+
