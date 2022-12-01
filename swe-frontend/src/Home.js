@@ -17,7 +17,7 @@ const Home = () => {
             <Container>
                 <h1> Reserve a Table </h1>
 
-                    <Button variant="primary" href='/reserve'>Reserve Table</Button>
+                    <Button variant="primary" className = "mr-3" href='/reserve'>Reserve Table</Button>
                     <Button variant="secondary"href='/reservationHistory'>Check reservation</Button>
             </Container>
             </Layout>
