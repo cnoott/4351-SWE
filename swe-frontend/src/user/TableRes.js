@@ -121,7 +121,7 @@ const TableRes = () => {
                     { error && <Alert variant='danger'> {error} </Alert> }
                     { warning && <Alert variant='warning'> {warning} </Alert> }
                     {/*GUESTS*/}
-                    <Form.Group id = "numg" className = {"mb-3"} controlId = "regNumGuests">
+                    <Form.Group id = "numg" className = {"ml-5 mr-5"} controlId = "regNumGuests">
                         <Form.Label>Number of Guests</Form.Label>
                         <Form.Control 
                             className = {"mb-3"}
@@ -133,10 +133,9 @@ const TableRes = () => {
                         {numGuests}
                     </Form.Group>
                     {/*DATES*/}
-                    <Form.Group className = {"mb-3"} controlId = "regDate">
+                    <Form.Group className = {"ml-5 mr-5 "} controlId = "regDate">
                         <Form.Label>Date</Form.Label>
                         <Form.Control 
-                            className = {"mb-3"}
                             type="date" 
                             placeholder="Enter Reservation Date (MM/DD/YYYY)" 
                             value={date}
@@ -145,7 +144,7 @@ const TableRes = () => {
                         {date}
                     </Form.Group>
                     {/*TIMES*/}
-                    <Form.Group className = {"mb-3"} controlId = "TimeOptions">
+                    <Form.Group className = {"ml-5 mr-5"} controlId = "TimeOptions">
 
 
 
@@ -188,7 +187,7 @@ const TableRes = () => {
                         </Dropdown>
                     </Form.Group>
 
-                    <Button variant='primary' className = {"mb-3"} onClick={handleSubmit}> Reserve</Button>
+                    <Button variant='primary' className = {"ml-5 mr-5"} onClick={handleSubmit}> Reserve</Button>
                 </Form>
                 :
                 <Container>
