@@ -13,13 +13,6 @@ const Layout = ({ children }) => {
     const [tables, setTables] = useState([]);
 
     useEffect(() => {
-        fetch(`${API}/read-tables`, {
-            method: 'GET',
-            headers: {
-                'Content-type':'application/json',
-                Accept:'application/json',
-            }
-        })
     },[]);
 
     if (isAuthenticated()) {
