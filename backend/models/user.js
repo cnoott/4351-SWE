@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
     hashed_password: {
         type: String
     },

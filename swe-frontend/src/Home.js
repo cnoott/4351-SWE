@@ -29,7 +29,7 @@ const Home = () => {
             <Container>
                 <h1> Reserve a Table </h1>
                     <Button variant="primary" href='/login'>Signin</Button>
-                    <Button variant="secondary">Reserve as guest</Button>
+                    <Button variant="secondary"href='/guestReserve'>Reserve as guest</Button>
             </Container>
             </Layout>
         );

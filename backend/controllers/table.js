@@ -33,3 +33,9 @@ exports.createTable = (req, res) => {
         });
     });
 };
+
+exports.readTables = (req, res) => {
+    Table.find({}).exec((err, tables) => {
+        return res.json({tables});
+    });
+};
