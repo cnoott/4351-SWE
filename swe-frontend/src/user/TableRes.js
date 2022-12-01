@@ -196,6 +196,7 @@ const TableRes = () => {
                                 onClick={() => handleChooseReservation(table._id)}
                             > 
                                 Table number: {table.tableNum} : Capacity: {table.capacity}
+                                { table.combinedWith && (<p> <strong> Combined with: </strong> table {table.combinedWith.tableNum}, capactiy: {table.combinedWith.capacity}</p>)}
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
