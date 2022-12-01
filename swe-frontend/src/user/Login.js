@@ -59,7 +59,6 @@ const Login = () => {
                             value={email}
                             onChange={handleChange('email')}
                         />
-                        {email}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formGroupPassword">
                         <Form.Label>Password</Form.Label>
@@ -69,7 +68,6 @@ const Login = () => {
                             value={password}
                             onChange={handleChange('password')}
                         />
-                        {password}
                     </Form.Group>
                 </Form> 
 

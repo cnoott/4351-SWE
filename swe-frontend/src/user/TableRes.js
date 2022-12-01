@@ -104,7 +104,7 @@ const TableRes = () => {
                 }
                 else {
                     //TODO redirect to resreved tables page
-                    navigate('/');
+                    navigate('/reservationHistory');
                 }
             });
     };

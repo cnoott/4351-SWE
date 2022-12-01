@@ -31,8 +31,8 @@ exports.checkTables = async (req, res) => {
 
     //check if chosen time is avaliable
     var convertedDateTime = convertDateTime(date, time);
-    console.log('day',convertedDateTime.getDay());
-    if (convertedDateTime.getDay() < 1 || convertedDateTime.getDay() > 4) {
+    console.log('day', new Date(date).getDay());
+    if (new Date(date).getDay() < 1 || new Date(date).getDay() > 4) {
         if (reservationData.isGuest) {
             return res.status(400).json({ error: 'You must be logged in with a credit card on file to reserve during a weekend' });
         }
@@ -123,9 +123,11 @@ exports.makeReservation = (req, res) => {
 
 
     //make new resrvation doc
-    //add new reservation id to reservations
+    //add new reservation id to reservationa
+    let reservation;
     if (isGuest) {
-        const reservation = new Reservation({
+        console.log('iSGUEST');
+        reservation = new Reservation({
             tableId: table._id,
             dateTime: convertedDateTime,
             numGuests,
@@ -134,7 +136,7 @@ exports.makeReservation = (req, res) => {
 
     }
     else {
-        const reservation = new Reservation({
+        reservation = new Reservation({
             tableId: table._id,
             userId,
             dateTime: convertedDateTime,
