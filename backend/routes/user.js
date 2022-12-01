@@ -9,7 +9,7 @@ const {
 } = require('../controllers/user');
 
 router.get('/user/:userId', read);
-router.put('/update-user/:userId', requireSignin, isAuth, update);
+router.put('/update-user/:userId', update);
 
 router.param('userId', userById);
 

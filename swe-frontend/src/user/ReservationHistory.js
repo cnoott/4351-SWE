@@ -144,4 +144,4 @@ const ReservationHistory = () => {
 }
 
 
-    export default ReservationHistory;
+export default ReservationHistory;

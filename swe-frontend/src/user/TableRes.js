@@ -10,6 +10,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Alert from 'react-bootstrap/Alert';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
+import Holiday from 'date-holidays';
+var hd = new Holiday('US');
 
 // TODO: on success redirect to reserved tables page
 
@@ -20,23 +22,42 @@ const TableRes = () => {
         numGuests:'',
         date:'',
         time:'',
-        userId: ''
+        userId: '',
+        isSpecialDay: false
     });
 
     const [matchingTables, setMatchingTables] = useState([]);
 
     const [error, setError] = useState('');
+    const [warning, setWarning] = useState('');
 
 
     const { numGuests, date, time } = values;
     const handleChange = name => e => {
         const value = e.target.value;
 
-        setValues({...values, [name]: value});
+
+        if (name === 'date') {
+            var convertedDate = new Date(value);
+            if(hd.isHoliday(convertedDate)) {
+                setValues({ ...values, [name]: value, isSpecialDay: true });
+                console.log('HOLDIAY');
+                setWarning('Warning, this is a holiday, make sure you have a card on file');
+            }
+            else if (convertedDate.getDay() < 1 || convertedDate.getDay() > 4) {
+                setWarning('Warning, this is a weekend, make sure you have a card on file');
+            }
+            else {
+                setValues({...values, [name]: value, isSpecialDay:false});
+                setWarning('');
+            }
+        }
+        else {
+            setValues({...values, [name]: value});
+        }
     };
 
     const { token, user: { _id } } = isAuthenticated();
-
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -47,7 +68,7 @@ const TableRes = () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(values)
+            body: JSON.stringify({...values, userId: _id })
         })
             .then(async res => {
                 const tables = await res.json();
@@ -83,7 +104,7 @@ const TableRes = () => {
                 }
                 else {
                     //TODO redirect to resreved tables page
-                    navigate('/');
+                    navigate('/reservationHistory');
                 }
             });
     };
@@ -95,6 +116,7 @@ const TableRes = () => {
             { matchingTables.length === 0 ?
                 <Form className=''>
                     { error && <Alert variant='danger'> {error} </Alert> }
+                    { warning && <Alert variant='warning'> {warning} </Alert> }
                     {/*GUESTS*/}
                     <Form.Group id = "numg" className = {"text-center w-50"} controlId = "regNumGuests">
                         <Form.Label>Number of Guests</Form.Label>
