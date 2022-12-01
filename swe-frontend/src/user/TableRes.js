@@ -45,10 +45,10 @@ const TableRes = () => {
             if(hd.isHoliday(convertedDate)) {
                 setValues({ ...values, [name]: value, isSpecialDay: true });
                 console.log('HOLDIAY');
-                setWarning('Warning, this is a holiday, make sure you have a card on file');
+                setWarning('Warning, this is a holiday, make sure you have a card on file, there will be a $10 no show charge');
             }
             else if (convertedDate.getDay() < 1 || convertedDate.getDay() > 4) {
-                setWarning('Warning, this is a weekend, make sure you have a card on file');
+                setWarning('Warning, this is a weekend, make sure you have a card on file, there will be a $10 no show charge');
             }
             else {
                 setValues({...values, [name]: value, isSpecialDay:false});

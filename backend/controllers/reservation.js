@@ -31,6 +31,11 @@ exports.checkTables = async (req, res) => {
     const { date, time, userId } = req.body;
     const numGuests = parseInt(req.body.numGuests);
 
+    //check if chosen date time is in the past
+    if (new Date(date) < new Date()){
+            return res.status(400).json({ error: 'You cannot select a time in the past' });
+    }
+
     //check if chosen time is avaliable
     var convertedDateTime = convertDateTime(date, time);
     if (new Date(date).getDay() < 1 || new Date(date).getDay() > 4) {
