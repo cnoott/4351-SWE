@@ -121,10 +121,10 @@ const TableRes = () => {
                     { error && <Alert variant='danger'> {error} </Alert> }
                     { warning && <Alert variant='warning'> {warning} </Alert> }
                     {/*GUESTS*/}
-                    <Form.Group id = "numg" className = {"text-center w-50"} controlId = "regNumGuests">
+                    <Form.Group id = "numg" className = {"mb-3"} controlId = "regNumGuests">
                         <Form.Label>Number of Guests</Form.Label>
                         <Form.Control 
-                            className = {"text-center w-50"}
+                            className = {"mb-3"}
                             type="name" 
                             placeholder="Enter Number of Guests" 
                             value={numGuests}
@@ -133,10 +133,10 @@ const TableRes = () => {
                         {numGuests}
                     </Form.Group>
                     {/*DATES*/}
-                    <Form.Group className = {"text-center w-50"} controlId = "regDate">
+                    <Form.Group className = {"mb-3"} controlId = "regDate">
                         <Form.Label>Date</Form.Label>
                         <Form.Control 
-                            className = {"text-center w-50"}
+                            className = {"mb-3"}
                             type="date" 
                             placeholder="Enter Reservation Date (MM/DD/YYYY)" 
                             value={date}
@@ -145,7 +145,7 @@ const TableRes = () => {
                         {date}
                     </Form.Group>
                     {/*TIMES*/}
-                    <Form.Group className = {"text-center w-50"} controlId = "TimeOptions">
+                    <Form.Group className = {"mb-3"} controlId = "TimeOptions">
 
 
 
@@ -188,7 +188,7 @@ const TableRes = () => {
                         </Dropdown>
                     </Form.Group>
 
-                    <Button variant='primary' className = {"text-center w-25"} onClick={handleSubmit}> Reserve</Button>
+                    <Button variant='primary' className = {"mb-3"} onClick={handleSubmit}> Reserve</Button>
                 </Form>
                 :
                 <Container>
