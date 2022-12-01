@@ -7,6 +7,25 @@ require('dotenv').config();
 
 exports.signup = (req, res) => {
     console.log(req.body);
+    for (var key in req.body) {
+        if (req.body[key] === '') {
+            return res.status(400).json({
+                error: `${key} cannot be blank`
+            });
+        }
+    }
+
+    if (req.body.password.length < 5) {
+        return res.status(400).json({
+            error: 'password must be at least 4 characters long'
+        });
+    }
+
+    if (!req.body.email.includes('@')){
+        return res.status(400).json({
+            error: 'please enter a valid email'
+        });
+    }
 
     const user = new User(req.body);
 
