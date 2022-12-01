@@ -19,7 +19,9 @@ function compare(table1, table2) {
 function convertDateTime(date, time) {
     var dateParts = date.split('-');
     var timeParts = time.split(':');
-    return new Date(dateParts[2], parseInt(dateParts[1], 10) - 1, dateParts[0], timeParts[0], timeParts[1]);
+    var date = new Date(dateParts[2], parseInt(dateParts[1], 10) - 1, dateParts[0], timeParts[0], timeParts[1]);
+    console.log('DATE: ', date);
+    return date;
 };
 
 //returns list of avaliable tables
@@ -31,7 +33,6 @@ exports.checkTables = async (req, res) => {
 
     //check if chosen time is avaliable
     var convertedDateTime = convertDateTime(date, time);
-    console.log('day', new Date(date).getDay());
     if (new Date(date).getDay() < 1 || new Date(date).getDay() > 4) {
         if (reservationData.isGuest) {
             return res.status(400).json({ error: 'You must be logged in with a credit card on file to reserve during a weekend' });
@@ -155,7 +156,7 @@ exports.makeReservation = (req, res) => {
         if (!isGuest) {
             User.findOneAndUpdate(
                 { _id: userId.toString() },
-                { $push: newReservation._id },
+                { $push: { reservations: newReservation._id } },
                 { new: true },
                 (err, user) => {
                     if (err) return console.log(err);
@@ -167,4 +168,15 @@ exports.makeReservation = (req, res) => {
             return res.status(200).json({ url: `/checkout/${newReservation._id}` });
         }
     });
+};
+
+exports.getMyReservations = (req, res) => {
+    const { reservations } = req.profile;
+    Reservation.find()
+        .where('_id').in(reservations)
+        .exec((err, reservationData) => {
+            return res.json({
+                reservationData
+            });
+        })
 };

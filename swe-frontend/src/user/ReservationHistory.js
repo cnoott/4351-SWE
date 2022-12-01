@@ -1,146 +1,57 @@
-import React, { useState} from 'react'; 
+import React, { useState, useEffect} from 'react'; 
 import Layout from '../shared/Layout';
-import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { isAuthenticated } from '../auth';
+
+const API = 'http://localhost:8000/api';
 
 const ReservationHistory = () => {
-    const [values, setValues] = useState({
-        name:'',
-        phone:'',
-        email:'',
-        date:'',
-        time:'',
-        numberOfGuests: 0,
-    });
+
+    const { user: {_id } } = isAuthenticated(); 
+    const [reservations, setReservations] = useState([]);
 
 
-    const { name, phone, email, date, time, numberOfGuests } = values;
-    const handleChange = name => e => {
-        const value = e.target.value;
-
-        setValues({...values, [name]: value});
-    };
+    useEffect(() => {
+        fetch(`${API}/get-reservations/${_id}`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(async res => {
+                const reservationData = await res.json();
+                console.log(reservationData.reservationData);
+                setReservations(reservationData.reservationData);
+            });
+    },[]);
 
     return (
         <Layout>
             <h1> Reservation History </h1>
             <Container>
-            <ListGroup>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Name</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Phone</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Email</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Date</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                   
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Time</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Number Of Guests</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Diner Number</div>
-                    Cras justo odio
-                    </div>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Total Points </div>
-                    Cras justo odio
-                    </div>
-                   <div className="ms-2 me-auto">
-                   <div className="fw-bold">Points Earned</div>
-                   Cras justo odio
-                   </div>
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Payment Method</div>
-                    Cras justo odio
-                    </div>
-                   
-                </ListGroup.Item>
-                <ListGroup.Item
-                    
-                    className="d-flex justify-content-between align-items-start"
-                >
-                    <div className="ms-2 me-auto">
-                    <div className="fw-bold">Subheading</div>
-                    Cras justo odio
-                    </div>
-                    <Badge bg="primary" pill>
-                    14
-                    </Badge>
-                </ListGroup.Item>
+                <ListGroup>
+                    {reservations.length !== 0 && reservations.map((reservation, i) => (
+                    <ListGroup.Item key={i}
+
+                        className="d-flex justify-content-between align-items-start"
+                    >
+                        <div className="ms-2 me-auto">
+                            <div className="fw-bold"><strong> Date and Time </strong>{reservation.dateTime}</div>
+                            <strong> Number of guests: </strong>{reservation.numGuests}
+                        </div>
+
+                    </ListGroup.Item>
+
+                    ))}
                 </ListGroup>
             </Container>
         </Layout>
-      );
-    
+    );
+
 }
 
 
