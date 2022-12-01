@@ -162,7 +162,7 @@ const TableRes = () => {
                                 <Dropdown.Item eventKey={'12:00'}>12:00PM</Dropdown.Item>
                                 <Dropdown.Item eventKey={'12:30'}>12:30PM</Dropdown.Item>
                                 <Dropdown.Item eventKey={'13:00'}>1:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'13:30'}>1:30PM</Dropdown.Item>                                <Dropdown.Item eventKey={'1:00 PM'}>1:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'13:30'}>1:30PM</Dropdown.Item>
                                 <Dropdown.Item eventKey={'14:00'}>2:00PM</Dropdown.Item>
                                 <Dropdown.Item eventKey={'14:30'}>2:30PM</Dropdown.Item>
                                 <Dropdown.Item eventKey={'15:00'}>3:00PM</Dropdown.Item>
