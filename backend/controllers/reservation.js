@@ -31,6 +31,12 @@ exports.checkTables = async (req, res) => {
     const { date, time, userId } = req.body;
     const numGuests = parseInt(req.body.numGuests);
 
+    for (var key in req.body) {
+        if (req.body[key] === '') {
+            return res.status(400).json({ error: `${key} is blank` });
+        }
+    }
+
     //check if chosen date time is in the past
     if (new Date(date) < new Date()){
             return res.status(400).json({ error: 'You cannot select a time in the past' });
@@ -105,7 +111,7 @@ exports.checkTables = async (req, res) => {
 
             for (var i=0; i < tables.length; i++) {
                 if (numGuests <= (maxTable.capacity + tables[i].capacity)) {
-                    maxTable.combinedWith = tables[i]._id;
+                    maxTable.combinedWith = tables[i];
                     await matchingTables.push(maxTable);
 
                     return res.json({ matchingTables: matchingTables });
