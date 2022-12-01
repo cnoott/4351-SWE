@@ -33,10 +33,13 @@ const TableRes = () => {
 
 
     const { numGuests, date, time } = values;
+    const handleTimeChange = value => {
+        console.log(value);
+        setValues({...values, time: value});
+    };
+
     const handleChange = name => e => {
         const value = e.target.value;
-
-
         if (name === 'date') {
             var convertedDate = new Date(value);
             if(hd.isHoliday(convertedDate)) {
@@ -143,37 +146,41 @@ const TableRes = () => {
                     </Form.Group>
                     {/*TIMES*/}
                     <Form.Group className = {"text-center w-50"} controlId = "TimeOptions">
+
+
+
                         <Form.Label>Reservation Time</Form.Label>
-                        <Dropdown onSelect={handleChange('time')}>
+                        <Dropdown onSelect={handleTimeChange}>
                             <Dropdown.Toggle variant='secondary'>
                                 Select Reservation Time
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item eventKey={'10:00AM'}>10:00AM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'10:30AM'}>10:30AM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'11:00AM'}>11:00AM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'11:30AM'}>11:30AM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'12:00PM'}>12:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'12:30PM'}>12:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'1:00PM'}>1:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'1:30PM'}>1:30PM</Dropdown.Item>                                <Dropdown.Item eventKey={'1:00PM'}>1:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'2:00PM'}>2:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'2:30PM'}>2:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'3:00PM'}>3:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'3:30PM'}>3:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'4:00PM'}>4:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'4:30PM'}>4:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'5:00PM'}>5:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'5:30PM'}>5:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'6:00PM'}>6:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'6:30PM'}>6:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'7:00PM'}>7:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'7:30PM'}>7:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'8:00PM'}>8:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'8:30PM'}>8:30PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'9:00PM'}>9:00PM</Dropdown.Item>
-                                <Dropdown.Item eventKey={'9:30PM'}>9:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'10:00'}>10:00AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'10:30'}>10:30AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'11:00'}>11:00AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'11:30'}>11:30AM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'12:00 '}>12:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'12:30'}>12:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'13:00'}>1:00PM</Dropdown.Item>
+
+                                <Dropdown.Item eventKey={'13:30'}>1:30PM</Dropdown.Item>                                <Dropdown.Item eventKey={'1:00 PM'}>1:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'14:00'}>2:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'14:30'}>2:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'15:00'}>3:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'15:30'}>3:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'16:00'}>4:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'16:30'}>4:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'17:00'}>5:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'17:30'}>5:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'18:00'}>6:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'18:30'}>6:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'19:00'}>7:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'19:30'}>7:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'20:00'}>8:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'20:30'}>8:30PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'21:00'}>9:00PM</Dropdown.Item>
+                                <Dropdown.Item eventKey={'21:30'}>9:30PM</Dropdown.Item>
 
 
                             </Dropdown.Menu>
